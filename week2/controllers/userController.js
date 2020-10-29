@@ -6,12 +6,15 @@ const users = userModel.users;
 
 const user_list_get = async (req, res) => {
   const users = await userModel.getAllUsers();
+  delete users[0].password
+  delete users[1].password
   res.json(users);
 };
 
 const user_get = async (req, res,id) => {
   console.log("catController "+id)
   const users = await userModel.getUser(id);
+  delete users[0].password
   res.json(users);
 };
 /*
