@@ -10,6 +10,12 @@ const cat_list_get = async (req, res) => {
   res.json(cats);
 };
 
+const cat_get = async (req, res,id) => {
+  console.log("catController "+id)
+  const cats = await catModel.getCat(id);
+  res.json(cats);
+};
+/*
 const cat_list_get = (req, res) => {
   res.json(cats);
 };
@@ -20,7 +26,7 @@ const cat_get= (req,res,id)  => {
   
    
 }
-
+   */
 
    
 module.exports = {
