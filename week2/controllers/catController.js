@@ -1,6 +1,5 @@
 'use strict';
 // catController
-'use strict';
 const catModel = require('../models/catModel');
 
 const cats = catModel.cats;

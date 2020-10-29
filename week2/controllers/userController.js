@@ -1,30 +1,31 @@
 'use strict';
 // userController
-'use strict';
 const userModel = require('../models/userModel');
 
 const users = userModel.users;
 
-const user_list_get = (req, res) => {
-  console.log(JSON.stringify(users));
-  delete users[0].password
-  delete users[1].password
-  console.log(JSON.stringify(users));
+const user_list_get = async (req, res) => {
+  const users = await userModel.getAllUsers();
   res.json(users);
 };
 
-const user_get= (req,res,id)  => {
-  //console.log(JSON.stringify(users.filter(user=>users.id==id)))
-  const user=users.filter(user=>user.id==id);
-  
+const user_get = async (req, res,id) => {
+  console.log("catController "+id)
+  const users = await userModel.getUser(id);
+  res.json(users);
+};
+/*
+const cat_list_get = (req, res) => {
+  res.json(cats);
+};
 
-  delete user[0].password;
-  console.log(JSON.stringify(user[0])) // true
-  res.json(user);
+const cat_get= (req,res,id)  => {
+  console.log(JSON.stringify(cats.filter(cat=>cat.id==id)))
+  res.json(cats.filter(cat=>cat.id==id));
   
    
 }
-
+   */
 
    
 module.exports = {
