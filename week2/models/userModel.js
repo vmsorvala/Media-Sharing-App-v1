@@ -22,6 +22,23 @@ const getUser = async (id) => {
   }   
 };
 
+const addUser = async (id,name1,email1,pw1) => {
+  try {
+     // TODO: do the LEFT (or INNER) JOIN to get owner name too.
+    var query="INSERT INTO wop_user (name,email,password) VALUES  (\'" +name1+"\',\'"+email1+"\',\'"+pw1+"\');";
+   query.replace(/[^a-zA-Z@";,]/g, "")
+    console.log("usermodel "+query)
+  
+    const [rows] = 
+    await promisePool.execute(query); 
+   
+    return rows;
+  } catch (e) {
+    console.log('error', e.message);
+  }   
+};
+
+
 module.exports = {
-  getAllUsers, getUser,
+  getAllUsers, getUser,addUser
 };

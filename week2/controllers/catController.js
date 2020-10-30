@@ -14,6 +14,14 @@ const cat_get = async (req, res,id) => {
   const cats = await catModel.getCat(id);
   res.json(cats);
 };
+
+
+const cat_create_post = async (req, res) => {
+  console.log(req.body.name+" "+req.body.age+" "+req.body.weight+" "+req.body.owner);
+  await catModel.addCat(req.body.name,req.body.age,req.body.weight,
+    req.body.owner,req.file.filename);
+  
+};
 /*
 const cat_list_get = (req, res) => {
   res.json(cats);
@@ -29,6 +37,6 @@ const cat_get= (req,res,id)  => {
 
    
 module.exports = {
-  cat_list_get,cat_get
+  cat_list_get,cat_get,cat_create_post
 
 };

@@ -26,6 +26,7 @@ catController.cat_get(req,res, req.params.id)}
 );
 
 router.post('/cat', upload.single('cat'), function (req, res, next) {
+  catController.cat_create_post(req,res);
     console.log(req.body )
     res.json(req.body)
 });

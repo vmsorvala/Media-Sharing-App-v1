@@ -27,6 +27,7 @@ userController.user_get(req,res, req.params.id)}
 );
 
 router.post('/user', (req, res) => {
+  userController.user_create_post(req,res);
  console.log(JSON.stringify(req.body))  
 res.json(req.body)
 
