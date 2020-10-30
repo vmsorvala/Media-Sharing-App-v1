@@ -22,6 +22,19 @@ const cat_create_post = async (req, res) => {
     req.body.owner,req.file.filename);
   
 };
+
+const cat_update_put = async (req, res) => {
+  console.log(req.body.name+" "+req.body.age+" "+req.body.weight+" "+req.body.owner);
+  await catModel.updateCat(req.body.name,req.body.age,req.body.weight,
+    req.body.owner,req.body.id);
+  
+};
+
+const delete_cat = async (req, res,id) => {
+  console.log("catController delete:"+id)
+await catModel.deleteCat(id);
+  
+};
 /*
 const cat_list_get = (req, res) => {
   res.json(cats);
@@ -37,6 +50,6 @@ const cat_get= (req,res,id)  => {
 
    
 module.exports = {
-  cat_list_get,cat_get,cat_create_post
+  cat_list_get,cat_get,cat_create_post,cat_update_put,delete_cat
 
 };

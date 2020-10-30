@@ -31,12 +31,13 @@ router.post('/cat', upload.single('cat'), function (req, res, next) {
     res.json(req.body)
 });
 
-router.put('/cat', (req, res) => {
-  res.send('With this endpoint you can edit cats.')
+router.put('/cat', (req, res,id) => {
+  catController.cat_update_put(req,res);
+   
 });
 
-router.delete('/cat', (req, res) => {
-  res.send('With this endpoint you can delete cats.')
+router.delete('/cat/:id', (req, res) => {
+  catController.delete_cat(req,res,req.params.id);
 });
 
 module.exports = router
