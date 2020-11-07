@@ -6,6 +6,13 @@ const port = 3000;
 var bodyParser = require('body-parser');
 var catRouter = require('./routes/catRoute')
 var userRouter = require('./routes/userRoute')
+var path = require('path');
+const expressValidator = require('express-validator')
+
+
+app.use("/uploads", express.static(path.join(__dirname, '/uploads')));
+
+
 
 app.use(bodyParser.urlencoded({
     extended: false

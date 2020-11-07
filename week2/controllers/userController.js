@@ -14,7 +14,7 @@ const user_list_get = async (req, res) => {
 const user_get = async (req, res,id) => {
   console.log("userController "+id)
   const users = await userModel.getUser(id);
-  delete users[0].password
+  //delete users[0].password
   res.json(users);
 };
 

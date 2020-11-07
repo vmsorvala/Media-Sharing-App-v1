@@ -14,7 +14,8 @@ const createCatCards = (cats) => {
   cats.forEach((cat) => {
     // create li with DOM methods
     const img = document.createElement('img');
-    img.src = url + '/' + cat.filename;
+    img.src = url + '/uploads/' + cat.filename;
+    console.log(img.src)
     img.alt = cat.name;
     img.classList.add('resp');
 
@@ -30,7 +31,7 @@ const createCatCards = (cats) => {
     p2.innerHTML = `Weight: ${cat.weight}kg`;
 
     const p3 = document.createElement('p');
-    p3.innerHTML = `Owner: ${cat.ownername}`;
+    p3.innerHTML = `Owner: ${cat.owner}`;
 
     // add selected cat's values to modify form
     const modButton = document.createElement('button');
@@ -113,12 +114,13 @@ const getUsers = async () => {
     createUserOptions(users);
   }
   catch (e) {
-    console.log(e.message);
+    console.log("err:   "+e.message);
   }
 };
 getUsers();
 
 // submit add cat form
+
 addForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   const fd = new FormData(addForm);

@@ -2,12 +2,15 @@
 // catController
 const catModel = require('../models/catModel');
 
+
 const cats = catModel.cats;
 
 const cat_list_get = async (req, res) => {
   const cats = await catModel.getAllCats();
   res.json(cats);
 };
+
+
 
 const cat_get = async (req, res,id) => {
   console.log("catController "+id)
@@ -17,8 +20,8 @@ const cat_get = async (req, res,id) => {
 
 
 const cat_create_post = async (req, res) => {
-  console.log(req.body.name+" "+req.body.age+" "+req.body.weight+" "+req.body.owner);
-  await catModel.addCat(req.body.name,req.body.age,req.body.weight,
+  console.log("cat controller"+ req.body.name+" "+req.body.age+" "+req.body.weight+" "+req.body.owner);
+  const cats=await catModel.addCat(req.body.name,req.body.age,req.body.weight,
     req.body.owner,req.file.filename);
   
 };
@@ -50,6 +53,6 @@ const cat_get= (req,res,id)  => {
 
    
 module.exports = {
-  cat_list_get,cat_get,cat_create_post,cat_update_put,delete_cat
+  cat_list_get,cat_get,cat_create_post, cat_update_put,delete_cat
 
 };
