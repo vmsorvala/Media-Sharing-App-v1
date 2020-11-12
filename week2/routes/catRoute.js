@@ -9,6 +9,7 @@ const { body,validationResult } = require('express-validator');
 const path = require('path');
 var bodyParser = require('body-parser');
 const { Console } = require('console');
+const passport = require('../utils/pass.js');
 
 router.use( bodyParser.json() );       // to support JSON-encoded bodies
 router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -45,7 +46,7 @@ function checkFileType(file, cb){
   }
 }
 
-router.get('/cat',  catController.cat_list_get);
+router.get('/cat', passport.authenticate('jwt', {session: false}), catController.cat_list_get);
 
 router.get('/cat/:id',(req, res) => {
 catController.cat_get(req,res, req.params.id)}

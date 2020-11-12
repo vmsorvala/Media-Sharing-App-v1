@@ -1,6 +1,8 @@
 'use strict';
 const express = require('express');
 const app = express();
+const passport = require('./utils/pass.js');
+const authRoute=require('/routes/authRoute.js');
 const port = 3000;
 
 // At the top of your server.js

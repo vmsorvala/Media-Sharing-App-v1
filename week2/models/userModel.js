@@ -38,7 +38,22 @@ const addUser = async (id,name1,email1,pw1) => {
   }   
 };
 
+const getUserLogin = async (params) => {
+  try {
+    console.log("getUserLogin  "+params);
+    const [rows] = await promisePool.execute(
+        'SELECT * FROM wop_user WHERE email = ?;',
+        params);
+    return rows;
+  } catch (e) {
+    console.log('error', e.message);
+  }
+};
+
+const findOneById = async (params) => {
+};
+
 
 module.exports = {
-  getAllUsers, getUser,addUser
+  getAllUsers, getUser,addUser,getUserLogin,findOneById
 };

@@ -5,6 +5,7 @@ var router = express.Router()
 const userController = require('../controllers/userController');
 const multer = require('multer') // v1.0.5
 const { body, validationResult } = require('express-validator');
+const passport = require('../utils/pass.js');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -21,7 +22,7 @@ var upload = multer({ storage: storage })
 
 
 // create application/json parser
-router.get('/user',  userController.user_list_get);
+router.get('/user', passport.authenticate('jwt', {session: false}), userController.user_list_get);
 
 router.get('/user/:id',(req, res) => {
 userController.user_get(req,res, req.params.id)}
