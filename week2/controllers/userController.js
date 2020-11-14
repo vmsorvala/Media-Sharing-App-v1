@@ -18,12 +18,7 @@ const user_get = async (req, res,id) => {
   res.json(users);
 };
 
-const user_create_post = async (req, res) => {
-  console.log(req.body.name+" "+req.body.email+" "+req.body.passwd);
-  const users = await userModel.addUser(1,req.body.name,req.body.email,req.body.passwd);
-  //delete users[0].password
-  //res.send("done.");
-};
+
 /*
 const cat_list_get = (req, res) => {
   res.json(cats);
@@ -39,6 +34,5 @@ const cat_get= (req,res,id)  => {
 
    
 module.exports = {
-  user_list_get,user_get,user_create_post
-
+  user_list_get,user_get
 };
