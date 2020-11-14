@@ -40,7 +40,7 @@ const addUser = async (id,name1,email1,pw1) => {
 
 const getUserLogin = async (params) => {
   try {
-    console.log("getUserLogin  "+params);
+    console.log(params);
     const [rows] = await promisePool.execute(
         'SELECT * FROM wop_user WHERE email = ?;',
         params);
