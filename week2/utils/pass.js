@@ -22,13 +22,14 @@ passport.use(new Strategy(
         return done(null, false);
       }
       // TODO: use bcrypt to check of passwords don't match
-
+      const onkosamat=await bcrypt.compare(password, user.password);
+      console.log(password+' pass.js here  '+user.password+" onko samat!!! "+onkosamat);
       if (!(await bcrypt.compare(password, user.password))
       ) { // passwords dont match
-        console.log('here');
+      
         return done(null, false);
       }
-      delete user.password; // remove password propety from user object
+     
       return done(null, { ...user }); // use spread syntax to create shallow copy to get rid of binary row type
     } catch (err) { // general error
       return done(err);
