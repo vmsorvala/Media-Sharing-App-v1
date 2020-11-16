@@ -30,7 +30,7 @@ passport.use(new Strategy(
         return done(null, false);
       }
      
-      return done(null, { ...user }); // use spread syntax to create shallow copy to get rid of binary row type
+        return done(null, { ...user }); // use spread syntax to create shallow copy to get rid of binary row type
     } catch (err) { // general error
       return done(err);
     }
