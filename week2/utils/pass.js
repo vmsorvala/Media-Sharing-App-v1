@@ -39,7 +39,7 @@ passport.use(new JWTStrategy({
   function (jwtPayload, done) {
     console.log("jwtPayload:  " + JSON.stringify(jwtPayload) + " " + jwtPayload['user_id']);
     //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
-    return  fetch("http://localhost:3000/user/" + jwtPayload['user_id'])
+    return fetch("http://localhost:3000/user/" + jwtPayload['user_id'])
       .then(res => res.json())
       .then((user) => {
         return done(null, user);
