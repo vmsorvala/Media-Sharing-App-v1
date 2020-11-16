@@ -59,7 +59,7 @@ upload.single('cat'),
  [
   // username must be an email
   body('name').not().isEmpty().withMessage("can\'t be empty"),
-  body('name').matches(/^(?=.*?[A-Z])[\w\h-]{1,25}$/,"i").withMessage('ignore special characters and spaces'),
+  //body('name').matches(/^(?=.*?[A-Z])[\w\h-]{1,25}$/,"i").withMessage('ignore special characters and spaces'),
   body('age').not().isEmpty().withMessage("can\'t be empty"),
   body('age').isNumeric().withMessage("must be numeric"),
   body('weight').not().isEmpty().withMessage("can\'t be empty"),
@@ -73,13 +73,13 @@ function (req, res) {
   console.log(req.body.name.length)
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log("errors")
+    console.log("errors"+JSON.stringify(errors))
     
     return res.status(400).json({ errors: errors.array() });
   }  
   catController.cat_create_post(req,res);
   console.log(JSON.stringify(req.body))  
-    res.json(req.body)
+   // res.json(req.body)
 });
 
 router.put('/cat',[

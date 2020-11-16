@@ -22,20 +22,17 @@ const getCat = async (id) => {
   }   
 };
 
-const addCat = async (name,age,weight,owner,filename) => {
+const addCat = async (params) => {
+  console.log("catModel.js: "+params);
   try {
-     // TODO: do the LEFT (or INNER) JOIN to get owner name too.
-    var query="INSERT INTO wop_cat (name,age,weight,owner,filename) VALUES  (\'" +name+"\',\'"+age+"\',\'"+weight+"\',\'"+owner+"\',\'"+filename+"\');";
-   query.replace(/[^a-zA-Z@";,]/g, "")
-    console.log("usermodel "+query)
-  
-    const [rows] = 
-    await promisePool.execute(query); 
-   
+    const [rows] = await promisePool.execute(
+        'INSERT INTO wop_cat (name, age, weight, owner, filename, coords) VALUES (?, ?, ?, ?, ?, ?);',
+        params);
     return rows;
-  } catch (e) {
+  }
+  catch (e) {
     console.log('error', e.message);
-  }   
+  }
 };
 
 const updateCat = async (name,age,weight,owner,id) => {

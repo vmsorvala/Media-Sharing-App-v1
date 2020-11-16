@@ -13,7 +13,7 @@ const expressValidator = require('express-validator')
 
 
 app.use("/uploads", express.static(path.join(__dirname, '/uploads')));
-
+app.use('/thumbnails', express.static('thumbnails'));
 
 
 app.use(bodyParser.urlencoded({

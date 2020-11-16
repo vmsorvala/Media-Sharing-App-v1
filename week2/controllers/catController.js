@@ -1,7 +1,8 @@
 'use strict';
 // catController
 const catModel = require('../models/catModel');
-
+const resize = require('../utils/resize.js');
+const imageMeta = require('../utils/imageMeta.js');
 
 const cats = catModel.cats;
 
@@ -9,6 +10,8 @@ const cat_list_get = async (req, res) => {
   const cats = await catModel.getAllCats();
   res.json(cats);
 };
+
+
 
 
 
@@ -20,9 +23,31 @@ const cat_get = async (req, res,id) => {
 
 
 const cat_create_post = async (req, res) => {
-  console.log("cat controller"+ req.body.name+" "+req.body.age+" "+req.body.weight+" "+req.body.owner);
-  const cats=await catModel.addCat(req.body.name,req.body.age,req.body.weight,
-    req.body.owner,req.file.filename);
+  //const name=resize.makeThumbnail(req.file.path,req.file.filename);
+  //console.log(req.file.path+" cat_controller "+req.file.filename);
+  //console.log("cat controller"+ req.body.name+" "+req.body.age+" "+req.body.weight+" "+req.body.owner);
+  try {
+    // make thumbnail
+    resize.makeThumbnail(req.file.path, req.file.filename);
+    // get coordinates
+    const coords = await imageMeta.getCoordinates(req.file.path);
+    console.log('coords', coords);
+    // add to db
+    const params = [
+      req.body.name,
+      req.body.age,
+      req.body.weight,
+      req.body.owner,
+      req.file.filename,
+      "["+coords+"]",
+    ];
+    const cat = await catModel.addCat(params);
+    await res.json({message: 'upload ok'});
+  }
+  catch (e) {
+    console.log('exif error', e);
+    res.status(400).json({message: 'error'});
+  }
   
 };
 
