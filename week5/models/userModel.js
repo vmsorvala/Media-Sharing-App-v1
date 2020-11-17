@@ -46,7 +46,7 @@ const getUserLogin = async (params) => {
         params);
     return rows;
   } catch (e) {
-    console.log('error', e.message);
+    console.log('error1', e.message);
   }
 };
 

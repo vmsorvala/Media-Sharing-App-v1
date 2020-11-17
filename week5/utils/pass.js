@@ -15,6 +15,7 @@ var bcrypt = require('bcryptjs');
 passport.use(new Strategy(
   async (username, password, done) => {
     const params = [username];
+    
     try {
       const [user] = await userModel.getUserLogin(params);
       console.log('Local strategy', user); // result is binary row
